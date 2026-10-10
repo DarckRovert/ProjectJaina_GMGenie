@@ -92,7 +92,7 @@ local frame = CreateFrame("FRAME");
 frame:RegisterEvent("ADDON_LOADED");
 
 function frame:OnEvent(event, arg1)
-    if event == "ADDON_LOADED" and arg1 == "GMGenie" then
+    if event == "ADDON_LOADED" and (arg1 == "GMGenie" or arg1 == "ProjectJaina_GMGenie") then
         GMGenie.onLoad();
     end
 end

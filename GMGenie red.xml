@@ -429,7 +429,7 @@
         </Anchors>
         <Layers>
             <Layer level="ARTWORK">
-                <Texture name="$parent_Icon" file="Interface\AddOns\GMGenie\Textures\minimap">
+                <Texture name="$parent_Icon" file="Interface\AddOns\ProjectJaina_GMGenie\Textures\minimap">
                     <Size>
                         <AbsDimension x="21" y="21"/>
                     </Size>

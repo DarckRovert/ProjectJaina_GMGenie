@@ -434,8 +434,8 @@
                 GMGenie.Hud.toggle();
             </OnClick>
         </Scripts>
-        <NormalTexture file="Interface\AddOns\GMGenie\Textures\Genie"/>
-        <PushedTexture file="Interface\AddOns\GMGenie\Textures\Genie"/>
+        <NormalTexture file="Interface\AddOns\ProjectJaina_GMGenie\Textures\Genie"/>
+        <PushedTexture file="Interface\AddOns\ProjectJaina_GMGenie\Textures\Genie"/>
         <HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
     </Button>
 </Ui>

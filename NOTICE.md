@@ -1,26 +1,28 @@
 # 📜 Aviso Legal y Atribución — ProjectJaina_GMGenie
 
-Este repositorio forma parte del conjunto de herramientas operativas de **Project Jaina - Project Jaina**.
-Contiene la suite de gestión y administración para Game Masters en clientes World of Warcraft 3.3.5a (Build 12340) sobre AzerothCore.
+Este repositorio forma parte del ecosistema oficial de **Project Jaina**.
+Contiene Suite avanzada de resolución de tickets, respuestas predefinidas, macros administrativas y telemetría de soporte in-game. Exclusivo de GM / Staff. para el cliente World of Warcraft 3.3.5a (Build 12340).
 
 ---
 
-## 1. Atribución del Proyecto Base Upstream
-* **Autor Original:** Chocochaos (CurseForge / WoWInterface)
-* **Proyecto Upstream:** [Game Master Genie](https://www.curseforge.com/wow/addons/game-master-genie)
-* **Licencia Base:** GNU General Public License v3.0 (GPL-3.0)
+## 1. Autoría y Desarrollo Oficial
+* **Desarrollador Principal:** DarckRovert (Ingame: `Elnazzareno`) & Antigravity (Mythos 5)
+* **Ecosistema:** [Project Jaina Oficial](https://darckrovert.github.io/ProjectJaina_Web/)
+* **Repositorio Oficial:** [DarckRovert/ProjectJaina_GMGenie](https://github.com/DarckRovert/ProjectJaina_GMGenie)
 
 ---
 
-## 2. Adaptaciones y Hardening por Project Jaina
-* **Mantenimiento y Adaptación:** DarckRovert & Project Jaina Staff
-* **Servidor Destino:** [Project Jaina — Project Jaina](https://darckrovert.github.io/ProjectJaina_Web/)
-* **Mejoras Implementadas:**
-  1. Compatibilidad completa con la sintaxis de comandos de AzerothCore v1.0.0.
-  2. Ajuste de módulos de teletransporte, inspección de tickets y disciplina para el entorno de juego local.
-  3. Eliminación de dependencias obsoletas y saneamiento de bibliotecas embebidas en `Chronos/`.
+## 2. Arquitectura y Protocolo Autoritativo
+* **Prefijo de Red:** `WP_GENIE`
+* **Integración Servidor:** `Sistema de tickets de AzerothCore y scripts Eluna`
+* **Variables Guardadas:** `GMGenieDB`
+* **Comandos Slash:** `/genie, /gmgenie`
 
 ---
 
-## 3. Licencia y Términos
-Distribuido bajo los términos de la **GNU General Public License v3.0**. Consulta el archivo [LICENSE](LICENSE) para el texto completo de la licencia.
+## 3. Cumplimiento de Políticas de Interfaz (Blizzard Custom UI Policy)
+En estricto cumplimiento de la Política de Interfaz de Usuario Personalizada de Blizzard Entertainment (2009):
+1. **Gratuito y Abierto:** Este software es completamente gratuito y de código abierto para la comunidad de jugadores.
+2. **Sin Alteración de Binarios:** No realiza ingeniería inversa, inyección de código ni altera binarios del juego (`WoW.exe`).
+3. **Aislamiento FrameXML:** Respeta el aislamiento de ejecución en FrameXML y no genera taint en subsistemas protegidos de combate.
+4. **Sin Publicidad ni Cobro:** No incluye anuncios publicitarios ni solicita compensación monetaria directa para el uso de sus funciones in-game.
