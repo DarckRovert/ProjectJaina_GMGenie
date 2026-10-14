@@ -7,9 +7,9 @@
 
 ## Interface: 30300
 ## Title: GM Genie [|cFFD4AF37Project Jaina|r]
-## Note: Game Master Genie v1.0.0-AzerothCore adaptado para Project Jaina
+## Note: Game Master Genie v1.0.0-JainaCore adaptado para Project Jaina
 ## Author: Chocochaos (Adaptado por DarckRovert - Elnazzareno)
-## Version: 1.0.0-AzerothCore
+## Version: 1.0.0-JainaCore
 ## DefaultState: Enabled
 ## SavedVariables: GMGenie_SavedVars
 GMGenie.xml

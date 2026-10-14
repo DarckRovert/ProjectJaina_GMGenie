@@ -9,7 +9,19 @@ GMGenie.defaultSettings = {
     ["GMSyncChannel"] = "GM_Sync_Channel",
     ["whispers"] = {},
     ["mail"] = {},
-    ["tele"] = {},
+    ["tele"] = {
+        ["1. Baluarte Tarren"] = "baluarte1",
+        ["2. Baluarte Cerro"] = "baluarte2",
+        ["3. Baluarte Martillo"] = "baluarte3",
+        ["4. Baluarte Costasur"] = "baluarte4",
+        ["5. Baluarte Sentencia"] = "baluarte5",
+        ["6. Baluarte Molino"] = "baluarte6",
+        ["Galeon Cubierta"] = "galeon",
+        ["Galeon Escala"] = "galeon_escala",
+        ["Jaina Proudmoore"] = "theramore",
+        ["Dalaran"] = "dalaran",
+        ["ICC"] = "icecrown",
+    },
     ['objects'] = {},
     ['npcs'] = {},
     ['mute'] = {},
@@ -29,6 +41,11 @@ function GMGenie.loadSettings()
     for name, value in pairs(GMGenie.defaultSettings) do
         if not GMGenie_SavedVars[name] then
             GMGenie_SavedVars[name] = value;
+        end
+    end
+    if GMGenie_SavedVars["tele"] and next(GMGenie_SavedVars["tele"]) == nil then
+        for k, v in pairs(GMGenie.defaultSettings["tele"]) do
+            GMGenie_SavedVars["tele"][k] = v;
         end
     end
 end

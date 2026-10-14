@@ -14,7 +14,7 @@ Contiene Suite avanzada de resolución de tickets, respuestas predefinidas, macr
 
 ## 2. Arquitectura y Protocolo Autoritativo
 * **Prefijo de Red:** `WP_GENIE`
-* **Integración Servidor:** `Sistema de tickets de AzerothCore y scripts Eluna`
+* **Integración Servidor:** `Sistema de tickets de JainaCore y scripts Eluna`
 * **Variables Guardadas:** `GMGenieDB`
 * **Comandos Slash:** `/genie, /gmgenie`
 

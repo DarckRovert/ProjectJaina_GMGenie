@@ -21,7 +21,7 @@ La seguridad de **ProjectJaina_GMGenie** se fundamenta en el aislamiento estrict
    - La API `SendAddonMessage` está restringida a un máximo absoluto de **255 bytes por paquete**. Todo payload emitido se fragmenta o comprime en estructuras compactas.
    - Prefijo auditado: `WP_GENIE`.
 3. **Validación Autoritativa en Servidor:**
-   - El cliente de interfaz es tratado como un medio de presentación potencialmente no confiable. Ninguna transacción de ítems, progreso, monedas o recompensas es decidida por el cliente; el servidor Eluna / C++ (`Sistema de tickets de AzerothCore y scripts Eluna`) valida y aplica los cambios en MySQL.
+   - El cliente de interfaz es tratado como un medio de presentación potencialmente no confiable. Ninguna transacción de ítems, progreso, monedas o recompensas es decidida por el cliente; el servidor Eluna / C++ (`Sistema de tickets de JainaCore y scripts Eluna`) valida y aplica los cambios en MySQL.
 4. **Higiene de Strings y Sanitización:**
    - Toda entrada de usuario proveniente de cajas de texto (`EditBox`) o comandos slash (`/genie, /gmgenie`) es limpiada contra inyecciones de secuencias de escape y caracteres nulos.
 

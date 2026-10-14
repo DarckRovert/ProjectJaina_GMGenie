@@ -3,11 +3,11 @@
 [![GitHub](https://img.shields.io/badge/GitHub-DarckRovert%2FProjectJaina_GMGenie-black?logo=github)](https://github.com/DarckRovert/ProjectJaina_GMGenie)
 
 > **Project Jaina Ecosystem** · WotLK 3.3.5a compatible · `Interface: 30300`  
-> Fork de [Game Master Genie](https://www.curse.com/addons/wow/game-master-genie) por Chocochaos — Adaptado para AzerothCore/Project Jaina por DarckRovert
+> Fork de [Game Master Genie](https://www.curse.com/addons/wow/game-master-genie) por Chocochaos — Adaptado para JainaCore/Project Jaina por DarckRovert
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 
-Suite completa de herramientas para **Game Masters** de Project Jaina sobre AzerothCore. Combina múltiples paneles (tickets, spawns, HUD, disciplina, teleports) en una interfaz unificada diseñada para la gestión eficiente del servidor.
+Suite completa de herramientas para **Game Masters** de Project Jaina sobre JainaCore. Combina múltiples paneles (tickets, spawns, HUD, disciplina, teleports) en una interfaz unificada diseñada para la gestión eficiente del servidor.
 
 ---
 

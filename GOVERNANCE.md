@@ -22,7 +22,7 @@ Suite avanzada de resolución de tickets, respuestas predefinidas, macros admini
    - Todo mensaje transmitido mediante `SendAddonMessage` respeta el límite estricto de **255 bytes por paquete** de la versión 3.3.5a.
    - Prefijo de Red Registrado: `WP_GENIE`.
 3. **Persistencia Segura e Idempotencia:**
-   - La persistencia de datos utiliza variables guardadas (`GMGenieDB`) y/o sincronización atómica con el backend del servidor (`Sistema de tickets de AzerothCore y scripts Eluna`).
+   - La persistencia de datos utiliza variables guardadas (`GMGenieDB`) y/o sincronización atómica con el backend del servidor (`Sistema de tickets de JainaCore y scripts Eluna`).
    - Cero pérdida de datos ante desconexiones intempestivas o reinicios con sistemas tipo *Deep Freeze*.
 4. **Cumplimiento de la Política de Blizzard (Blizzard Custom UI Policy 2009):**
    - Software 100% gratuito, libre de código malicioso, sin ingeniería inversa ni modificación de binarios ejecutables (`WoW.exe`).
