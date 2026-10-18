@@ -452,6 +452,7 @@ function GMGenie.Tickets.addLine(message)
 end
 
 function GMGenie.Tickets.delete()
+    if not GMGenie.Tickets.currentTicket or not GMGenie.Tickets.currentTicket["ticketId"] then return end
     GMGenie.sendCommand(".ticket close " .. GMGenie.Tickets.currentTicket["ticketId"]);
     GMGenie.sendCommand(".ticket del " .. GMGenie.Tickets.currentTicket["ticketId"]);
     GMGenie.Tickets.done = GMGenie.Tickets.done + 1;
@@ -462,6 +463,7 @@ function GMGenie.Tickets.delete()
 end
 
 function GMGenie.Tickets.assignToSelf()
+    if not GMGenie.Tickets.currentTicket or not GMGenie.Tickets.currentTicket["ticketId"] then return end
     GMGenie.sendCommand(".ticket assign " .. GMGenie.Tickets.currentTicket["ticketId"] .. " " .. UnitName("player"));
 end
 
@@ -471,15 +473,18 @@ function GMGenie.Tickets.assign()
 end
 
 function GMGenie.Tickets.assignTo()
+    if not GMGenie.Tickets.currentTicket or not GMGenie.Tickets.currentTicket["ticketId"] then return end
     GMGenie_Tickets_AssignPopup:Hide();
     GMGenie.sendCommand(".ticket assign " .. GMGenie.Tickets.currentTicket["ticketId"] .. " " .. GMGenie_Tickets_AssignPopup_GMName:GetText());
 end
 
 function GMGenie.Tickets.unassign()
+    if not GMGenie.Tickets.currentTicket or not GMGenie.Tickets.currentTicket["ticketId"] then return end
     GMGenie.sendCommand(".ticket unassign " .. GMGenie.Tickets.currentTicket["ticketId"]);
 end
 
 function GMGenie.Tickets.setComment()
+    if not GMGenie.Tickets.currentTicket or not GMGenie.Tickets.currentTicket["ticketId"] then return end
     GMGenie.sendCommand(".ticket comment " .. GMGenie.Tickets.currentTicket["ticketId"] .. " " .. GMGenie_Tickets_View_Comment:GetText());
 end
 

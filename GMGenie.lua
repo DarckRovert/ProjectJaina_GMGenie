@@ -107,7 +107,7 @@ GMGenie.minimap = {};
 -- Call this in a mod's initialization to move the minimap button to its saved position (also used in its movement)
 -- ** do not call from the mod's OnLoad, VARIABLES_LOADED or later is fine. **
 function GMGenie.minimap.reposition()
-    GMGenie_Minimap:SetPoint("TOPLEFT", "Minimap", "TOPLEFT", 52 - (80 * cos(GMGenie_SavedVars.minimapPos)), (80 * sin(GMGenie_SavedVars.minimapPos)) - 52)
+    GMGenie_Minimap:SetPoint("TOPLEFT", "Minimap", "TOPLEFT", 52 - (80 * math.cos(GMGenie_SavedVars.minimapPos)), (80 * math.sin(GMGenie_SavedVars.minimapPos)) - 52)
 end
 
 -- Only while the button is dragged this is called every frame

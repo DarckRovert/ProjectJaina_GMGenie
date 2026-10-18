@@ -286,7 +286,7 @@ function GMGenie.Spawns.move(x, y, z, o)
     x = tonumber(x);
     y = tonumber(y);
     z = tonumber(z);
-    o = deg(tonumber(o));
+    o = math.deg(tonumber(o));
 
     if GMGenie.Spawns.currentSpawnOption == -1 then
         forwardBackward = -1 * forwardBackward;
@@ -318,7 +318,7 @@ function GMGenie.Spawns.move(x, y, z, o)
         o = GMGenie.Spawns.direction.rotate;
     end
 
-    o = rad(o);
+    o = math.rad(o);
 
     GMGenie.Spawns.currentCoords.x = x;
     GMGenie.Spawns.currentCoords.y = y;
@@ -548,7 +548,7 @@ function GMGenie.Spawns.Hyperlink.spawnHere()
     elseif GMGenie.Spawns.Hyperlink.type == "creature_entry" then
         GMGenie.sendCommand(".npc add " .. GMGenie.Spawns.Hyperlink.id);
     else
-        GMGnie.showGMMessage("Could not spawn link type " .. GMGenie.Spawns.Hyperlink.type);
+        GMGenie.showGMMessage("Could not spawn link type " .. GMGenie.Spawns.Hyperlink.type);
     end
 end
 
@@ -558,7 +558,7 @@ function GMGenie.Spawns.Hyperlink.addPreset()
     elseif GMGenie.Spawns.Hyperlink.type == "creature_entry" then
         GMGenie_SavedVars.npcs[GMGenie.Spawns.Hyperlink.name] = GMGenie.Spawns.Hyperlink.id;
     else
-        GMGnie.showGMMessage("Could not add preset for link type " .. GMGenie.Spawns.Hyperlink.type);
+        GMGenie.showGMMessage("Could not add preset for link type " .. GMGenie.Spawns.Hyperlink.type);
     end
 end
 
@@ -568,7 +568,7 @@ function GMGenie.Spawns.Hyperlink.list()
     elseif GMGenie.Spawns.Hyperlink.type == "creature_entry" then
         GMGenie.sendCommand(".list creature " .. GMGenie.Spawns.Hyperlink.id);
     else
-        GMGnie.showGMMessage("Could not list link type " .. GMGenie.Spawns.Hyperlink.type);
+        GMGenie.showGMMessage("Could not list link type " .. GMGenie.Spawns.Hyperlink.type);
     end
 end
 
@@ -578,7 +578,7 @@ function GMGenie.Spawns.Hyperlink.goTo()
     elseif GMGenie.Spawns.Hyperlink.type == "creature" then
         GMGenie.sendCommand(".go creature " .. GMGenie.Spawns.Hyperlink.id);
     else
-        GMGnie.showGMMessage("Could not port to link type " .. GMGenie.Spawns.Hyperlink.type);
+        GMGenie.showGMMessage("Could not port to link type " .. GMGenie.Spawns.Hyperlink.type);
     end
 end
 
@@ -588,7 +588,7 @@ function GMGenie.Spawns.Hyperlink.remove()
     elseif GMGenie.Spawns.Hyperlink.type == "creature" then
         GMGenie.sendCommand(".npc delete " .. GMGenie.Spawns.Hyperlink.id);
     else
-        GMGnie.showGMMessage("Could not remove link type " .. GMGenie.Spawns.Hyperlink.type);
+        GMGenie.showGMMessage("Could not remove link type " .. GMGenie.Spawns.Hyperlink.type);
     end
 end
 
