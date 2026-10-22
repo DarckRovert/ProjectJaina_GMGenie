@@ -6,12 +6,12 @@
 # You should have received a copy of the GNU General Public License along with Game Master Genie. If not, see <http://www.gnu.org/licenses/>.
 
 ## Interface: 30300
-## Title: GM Genie [|cFFD4AF37Project Jaina|r]
-## Note: Game Master Genie v1.0.0-JainaCore adaptado para Project Jaina
-## Author: Chocochaos (Adaptado por DarckRovert - Elnazzareno)
-## Version: 1.0.0-JainaCore
+## Title: |cFFD4AF37Project Jaina|r - |cFF00CCFFGM Genie & Staff Suite|r
+## Notes: Suite integral de herramientas para Game Masters y Staff (Tickets, HUD, Control Panel Jaina & Sylvanas, Teleports y Baluartes).
+## Author: Chocochaos & DarckRovert (Project Jaina Team)
+## Version: 3.1.0-Sovereign
 ## DefaultState: Enabled
-## SavedVariables: GMGenie_SavedVars
+## SavedVariables: GMGenie_SavedVars, JainaGM_DB
 GMGenie.xml
 Chronos\Chronos.xml
 GMGenie.lua
@@ -31,6 +31,7 @@ Macros.Whispers.lua
 Macros.Whispers.xml
 Spawns.lua
 Spawns.xml
+ControlPanel.lua
 Options\GMGenie.lua
 Options\GMGenie.xml
 Options\Tickets.lua
@@ -45,3 +46,4 @@ Options\Macros.Whispers.lua
 Options\Macros.Whispers.xml
 Options\Spawns.lua
 Options\Spawns.xml
+
