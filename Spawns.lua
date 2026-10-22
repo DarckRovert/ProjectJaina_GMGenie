@@ -352,19 +352,72 @@ function GMGenie.Spawns.resetCoords()
     GMGenie.Spawns.updateView();
 end
 
+StaticPopupDialogs["GMGENIE_CONFIRM_DELETE_NPC"] = {
+    text = "|cffff4444[GMGenie ADVERTENCIA]|r\n¿Estás seguro de que deseas ELIMINAR el NPC objetivo (.npc del)?\n|cffff8800Esta acción es permanente en el mundo.|r",
+    button1 = "Eliminar",
+    button2 = "Cancelar",
+    OnAccept = function()
+        GMGenie.sendCommand(".npc del")
+        GMGenie.showGMMessage("|cffff4444[GMGenie]|r NPC eliminado.")
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3,
+}
+
+StaticPopupDialogs["GMGENIE_CONFIRM_DELETE_OBJECT"] = {
+    text = "|cffff4444[GMGenie ADVERTENCIA]|r\n¿Eliminar GameObject %s (GUID: %s, ID: %s)?\n|cffff8800Esta acción es permanente en el mundo.|r",
+    button1 = "Eliminar",
+    button2 = "Cancelar",
+    OnAccept = function(self, data)
+        if data and data.guid then
+            GMGenie.Spawns.waitingForObjectDelete = true
+            GMGenie.sendCommand(".gobject del " .. data.guid)
+            GMGenie.showGMMessage("|cffff4444[GMGenie]|r Eliminando objeto: " .. tostring(data.name) .. " GUID: " .. tostring(data.guid) .. " ID: " .. tostring(data.id))
+        end
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3,
+}
+
+StaticPopupDialogs["GMGENIE_CONFIRM_REMOVE_LINK"] = {
+    text = "|cffff4444[GMGenie ADVERTENCIA]|r\n¿Eliminar %s (ID: %s)?\n|cffff8800Esta acción es permanente en el mundo.|r",
+    button1 = "Eliminar",
+    button2 = "Cancelar",
+    OnAccept = function(self, data)
+        if data then
+            if data.type == "gameobject" then
+                GMGenie.sendCommand(".gob delete " .. data.id)
+                GMGenie.showGMMessage("|cffff4444[GMGenie]|r Objeto " .. data.id .. " eliminado.")
+            elseif data.type == "creature" then
+                GMGenie.sendCommand(".npc delete " .. data.id)
+                GMGenie.showGMMessage("|cffff4444[GMGenie]|r Creature " .. data.id .. " eliminada.")
+            end
+        end
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3,
+}
+
 function GMGenie.Spawns.targetObject()
     GMGenie.Spawns.waitingForObject = true;
     GMGenie.sendCommand(".gobject target");
 end
 
 function GMGenie.Spawns.deleteObject(name, guid, id)
-    GMGenie.Spawns.waitingForObjectDelete = true;
-    GMGenie.sendCommand(".gobject del " .. guid);
-    GMGenie.showGMMessage("Deleting object: " .. name .. " GUID: " .. guid .. " ID: " .. id);
+    local dialog = StaticPopup_Show("GMGENIE_CONFIRM_DELETE_OBJECT", name or "Objeto", guid or "?")
+    if dialog then
+        dialog.data = { name = name, guid = guid, id = id }
+    end
 end
 
 function GMGenie.Spawns.deleteNpc()
-    GMGenie.sendCommand(".npc del");
+    StaticPopup_Show("GMGENIE_CONFIRM_DELETE_NPC")
 end
 
 function GMGenie.Spawns.toggleMacroWindow()
@@ -583,10 +636,11 @@ function GMGenie.Spawns.Hyperlink.goTo()
 end
 
 function GMGenie.Spawns.Hyperlink.remove()
-    if GMGenie.Spawns.Hyperlink.type == "gameobject" then
-        GMGenie.sendCommand(".gob delete " .. GMGenie.Spawns.Hyperlink.id);
-    elseif GMGenie.Spawns.Hyperlink.type == "creature" then
-        GMGenie.sendCommand(".npc delete " .. GMGenie.Spawns.Hyperlink.id);
+    if GMGenie.Spawns.Hyperlink.type == "gameobject" or GMGenie.Spawns.Hyperlink.type == "creature" then
+        local dialog = StaticPopup_Show("GMGENIE_CONFIRM_REMOVE_LINK", GMGenie.Spawns.Hyperlink.name or GMGenie.Spawns.Hyperlink.type, GMGenie.Spawns.Hyperlink.id)
+        if dialog then
+            dialog.data = { type = GMGenie.Spawns.Hyperlink.type, id = GMGenie.Spawns.Hyperlink.id }
+        end
     else
         GMGenie.showGMMessage("Could not remove link type " .. GMGenie.Spawns.Hyperlink.type);
     end

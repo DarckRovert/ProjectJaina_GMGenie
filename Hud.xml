@@ -27,7 +27,7 @@
 
     <Button name="GMGenie_Hud" inherits="GMGenie_Window" hidden="false">
         <Size>
-            <AbsDimension x="100" y="158"/>
+            <AbsDimension x="100" y="178"/>
         </Size>
         <Anchors>
             <Anchor point="TOPRIGHT" relativeTo="MinimapCluster" relativePoint="BOTTOMRIGHT"/>
@@ -123,6 +123,21 @@
                 <Scripts>
                     <OnClick>
                         GMGenie.Spawns.toggle();
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="$parent_WaniGM" inherits="GMGenie_Button" text="Panel WaniGM">
+                <Size>
+                    <AbsDimension x="90" y="18"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="GMGenie_Hud_Builder" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        if SlashCmdList and SlashCmdList["WANIGM"] then
+                            SlashCmdList["WANIGM"]();
+                        end
                     </OnClick>
                 </Scripts>
             </Button>
