@@ -641,8 +641,8 @@ SLASH_JAINAGM4 = "/control"
 SLASH_JAINAGM5 = "/wgm"
 SLASH_JAINAGM6 = "/wanigm"
 SLASH_JAINAGM7 = "/gm"
-SLASH_JAINAGM8 = "/genie"
 SlashCmdList["JAINAGM"] = GMGenie.ControlPanel.Toggle
+SlashCmdList["WANIGM"]  = GMGenie.ControlPanel.Toggle
 
 DEFAULT_CHAT_FRAME:AddMessage(
     "|cff00ccff[Project Jaina — GM Genie & Staff Suite v" .. VERSION .. "]|r cargado. " ..

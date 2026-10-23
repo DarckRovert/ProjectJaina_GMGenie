@@ -126,7 +126,7 @@
                     </OnClick>
                 </Scripts>
             </Button>
-            <Button name="$parent_WaniGM" inherits="GMGenie_Button" text="Panel WaniGM">
+            <Button name="$parent_ControlPanel" inherits="GMGenie_Button" text="JainaGM">
                 <Size>
                     <AbsDimension x="90" y="18"/>
                 </Size>
@@ -135,8 +135,10 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                        if SlashCmdList and SlashCmdList["WANIGM"] then
-                            SlashCmdList["WANIGM"]();
+                        if GMGenie and GMGenie.ControlPanel and GMGenie.ControlPanel.Toggle then
+                            GMGenie.ControlPanel.Toggle();
+                        elseif SlashCmdList and SlashCmdList["JAINAGM"] then
+                            SlashCmdList["JAINAGM"]("");
                         end
                     </OnClick>
                 </Scripts>
