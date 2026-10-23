@@ -12,6 +12,14 @@ Suite completa de herramientas para **Game Masters** de Project Jaina sobre Jain
 ---
 
 ## Características
+ 
+### Panel de Control JainaGM (Staff Suite Unificada)
+- **Arte Facial Animado** — Retratos de alta resolución de Jaina y Sylvanas con ciclo realista de parpadeo ocular.
+- **Pestaña General** — Estados de GM (.gm on/off), vuelo (.fly on/off), invisibilidad, chat y control deslizante de velocidad de movimiento (1x a 20x).
+- **Pestaña Tele** — Teletransporte a capitales y enclaves clave con casilla de arrastre grupal de miembros de grupo y menú dinámico `.tele add/del`.
+- **Pestaña Mundo 2.5** — Control y teletransporte en tiempo real a los 6 Baluartes (`.outpost`) y el Galeón de los Desertores.
+- **Pestaña Items** — Spawner protegido por ItemEntry y buzón de correo rápido para asistencia a jugadores.
+- **Pestaña Utils** — Escala de personaje, modificaciones cosméticas de rol, alternancia PvP y terminal de comandos libre.
 
 ### Gestión de Tickets
 - Visualización y respuesta a tickets de jugadores en tiempo real.
@@ -22,8 +30,8 @@ Suite completa de herramientas para **Game Masters** de Project Jaina sobre Jain
 - Base de datos de spawns frecuentes.
 
 ### HUD de GM
-- Overlay de información del GM visible solo con `.gm on`.
-- Estado del servidor, jugadores online, alertas.
+- Overlay de información del GM visible con `.gm on` con botón de acceso directo `"JainaGM"`.
+- Estado del servidor, jugadores online y accesos directos.
 
 ### Macros GM
 - **Disciplina** — Macros de sanciones (warn, mute, ban).
@@ -31,30 +39,28 @@ Suite completa de herramientas para **Game Masters** de Project Jaina sobre Jain
 - **Mail** — Envío masivo de correos de anuncio.
 - **Whispers** — Plantillas de respuesta rápida.
 
-### Spy
-- Monitoreo de canales de chat para detección de comportamiento.
-
 ---
 
 ## Instalación
 
-Solo para cuentas GM en servidores Project Jaina.
+Solo para cuentas de Staff (GM Level >= 1) en servidores Project Jaina.
 
-1. Copia `GMGenie` a `Interface/AddOns/`.
-2. Requiere `.gm on` para acceder a los paneles.
-3. Los sub-addons de `Chronos/` se cargan automáticamente.
+1. Instala ejecutando el script automático `AddOns_Staff\Instalar_AddOns_Staff_En_Cliente.bat` o copia la carpeta `ProjectJaina_GMGenie` a `Interface/AddOns/`.
+2. Requiere nivel de Game Master para acceder a los paneles.
 
 ## 💻 Comandos de Barra (Slash Commands)
 
 | Comando | Acción |
 |---|---|
-| `/gmgenie` | Alterna la visualización del panel principal de GMGenie. |
-| `/gmg` | Abreviatura rápida de apertura y cierre de la suite. |
+| `/jainagm`, `/staff`, `/control`, `/gm` | Alterna el Panel de Control JainaGM (5 pestañas). |
+| `/gmgenie`, `/gmg` | Alterna la visualización del panel principal de GMGenie (Tickets y Spawns). |
 | `/gmg hud` | Alterna la visualización del overlay HUD de GM. |
+| `/wgm`, `/wanigm` | Alias de compatibilidad retroactiva para el Panel de Control. |
 
 ## Variables Guardadas
 
-- `GMGenie_SavedVars` — Configuración global, layouts de paneles, macros personalizados.
+- `GMGenie_SavedVars` — Configuración global, layouts de paneles, macros de tickets.
+- `JainaGM_DB` — Estado persistente, pestaña activa, configuración de velocidad y teletransporte grupal.
 
 ## Estructura
 
