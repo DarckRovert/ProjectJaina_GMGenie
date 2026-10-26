@@ -9,7 +9,7 @@
 ## Title: |cFFD4AF37Project Jaina|r - |cFF00CCFFGM Genie & Staff Suite|r
 ## Notes: Suite integral de herramientas para Game Masters y Staff (Tickets, HUD, Control Panel Jaina & Sylvanas, Teleports y Baluartes).
 ## Author: Chocochaos & DarckRovert (Project Jaina Team)
-## Version: 3.1.0-Sovereign
+## Version: 3.2.0-Sovereign
 ## DefaultState: Enabled
 ## SavedVariables: GMGenie_SavedVars, JainaGM_DB
 GMGenie.xml
@@ -31,6 +31,7 @@ Macros.Whispers.lua
 Macros.Whispers.xml
 Spawns.lua
 Spawns.xml
+ItemsCatalog.lua
 ControlPanel.lua
 Options\GMGenie.lua
 Options\GMGenie.xml
