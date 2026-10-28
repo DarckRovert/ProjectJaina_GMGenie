@@ -1415,7 +1415,7 @@ end, "Repara todo el equipamiento (.repairitems)")
 -- ================================================================
 -- PESTAÑA 4: GESTIÓN DE BOTS (30 BOTS POR ROL)
 -- ================================================================
-CreateSectionHeader(tab4, "Achievement_GuildPerk_MassResurrection", "GESTIÓN DE WANIBOTS (30 ROLES)", 0)
+CreateSectionHeader(tab4, "Achievement_Reputation_01", "GESTIÓN DE WANIBOTS (30 ROLES)", 0)
 
 local WANIBOTS_ROSTER = {
     {
