@@ -4,6 +4,14 @@ Todos los cambios notables de este proyecto están documentados en este archivo 
 
 ---
 
+## [3.2.0-Sovereign] — 2026-10-28
+### Reemplazo de Icono Incompatible de Cataclysm por Arte Canónico WotLK 3.3.5
+- **Iconografía y Arte de Interfaz (`ControlPanel.lua`):**
+  - Sustituido el icono incompatible de Cataclysm (`spell_fire_soulburn`) en la pestaña WaniGM por la textura oficial canónica de Wrath of the Lich King 3.3.5a (`Spell_Holy_MagicalSentry`).
+  - Eliminado el cuadrado verde/textura ausente en clientes sin parches de expansión superior.
+
+---
+
 ## [3.1.0-Sovereign] — 2026-10-22
 ### Unificación de Staff Suite & Absorción de WaniGM (Project Jaina Soberano)
 - **Absorción de WaniGM:** Integración nativa del Panel de Control de 5 pestañas (`ControlPanel.lua`) dentro de ProjectJaina_GMGenie, erradicando por completo la carpeta y dependencia externa de WaniGM.
