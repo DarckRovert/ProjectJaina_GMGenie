@@ -6,6 +6,7 @@
 # You should have received a copy of the GNU General Public License along with Game Master Genie. If not, see <http://www.gnu.org/licenses/>.
 
 ## Interface: 30300
+## Version: 3.2.0-Sovereign
 ## Title: |cFFD4AF37Project Jaina|r - |cFF00CCFFGM Genie & Staff Suite|r
 ## Notes: Suite integral de herramientas para Game Masters y Staff (Tickets, HUD, Control Panel Jaina & Sylvanas, Teleports y Baluartes).
 ## Author: Chocochaos & DarckRovert (Project Jaina Team)
