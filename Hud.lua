@@ -39,7 +39,16 @@ end
 --------------------------------------------------
 ------------ HUD status functionality ------------
 --------------------------------------------------
+local lastCheckStatusTime = 0
+local CHECK_STATUS_COOLDOWN = 10.0 -- Cooldown mínimo para evitar duplicación de telemetría GM en login
+
 function GMGenie.Hud.checkStatus()
+    local now = GetTime()
+    if (now - lastCheckStatusTime) < CHECK_STATUS_COOLDOWN then
+        return
+    end
+    lastCheckStatusTime = now
+
     GMGenie.sendCommand(".gm chat");
     GMGenie.sendCommand(".gm visible");
     GMGenie.sendCommand(".whispers");
