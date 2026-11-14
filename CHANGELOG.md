@@ -4,6 +4,27 @@ Todos los cambios notables de este proyecto están documentados en este archivo 
 
 ---
 
+## [3.3.0-Sovereign] — 2026-11-14
+### Reingeniería de Comandos AzerothCore, Resiliencia Dual-Locale esES/enUS y Hitos #356-360
+- **Comandos de Barra y Minimapa:**
+  - Registrados formalmente `/gmgenie` y `/gmg` con soporte de subcomandos (`hud`, `tickets`, `spawns`, `spy`).
+  - Botón del minimapa bifuncional: Clic Izquierdo abre el Panel de Control (`JainaGM`) y Clic Derecho alterna el HUD Overlay, con tooltip explicativo.
+- **Sintaxis Canónica AzerothCore:**
+  - Teletransporte con grupo corregido: envía `.tele <dest>` seguido de `.groupsummon` para evitar fallos de comando.
+  - Corrección de `.npc del` a `.npc delete` y de `.list object/creature` a `.lookup object/creature` en `Spawns.lua`.
+  - Corrección de `.mod speed all <val>` a `.modify speed <val>` en `Hud.lua`.
+- **Integración con Sistemas de Servidor (Hitos #356, #358 y #360):**
+  - **Rebobinado de Raid (`102_ResetPull_Command.lua`):** Incorporado el botón `.resetpull` en la Pestaña 3 para rebobinado limpio de wipes en 3 segundos (100% vida/maná, reset de CDs y sesión de Caja Negra).
+  - **Baluartes Territoriales (`14_GuildOutposts_Engine.lua`):** Corregido el despacho de `.outpost <n>` a `.outpost tele <n>` en la Pestaña 5.
+  - **Galeón de los Desertores (`15_LoreWorld_DeserterGalleon.lua`):** Vinculados los botones directos a `.galleon tele` (cubierta) y `.galleon ladder` (escala acuática).
+  - **HeroBots de la Trinidad:** Incorporados Jaina, Varian, Thrall y Sylvanas a la Pestaña 4 con despacho canónico `.bot add / .bot remove`.
+- **Resiliencia Dual-Locale (`esES` / `enUS`):**
+  - Detección de mensajes del sistema para modo GM, vuelo, visibilidad y susurros compatible tanto con cliente español (`locale "esES"`) como inglés.
+- **Portabilidad de Rutas de Texturas:**
+  - Detección dinámica del directorio de texturas `TEXTURE_DIR` relativo al nombre de carpeta del AddOn.
+
+---
+
 ## [3.2.0-Sovereign] — 2026-10-28
 ### Reemplazo de Icono Incompatible de Cataclysm por Arte Canónico WotLK 3.3.5
 - **Iconografía y Arte de Interfaz (`ControlPanel.lua`):**

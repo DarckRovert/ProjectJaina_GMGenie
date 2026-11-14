@@ -20,11 +20,9 @@
 
 
 
-local ADDON_NAME = "ProjectJaina_GMGenie"
-
-local VERSION    = "3.2.0-Sovereign"
-
-local TEXTURE_DIR = "Interface\\AddOns\\ProjectJaina_GMGenie\\Textures\\"
+local ADDON_NAME = ... or "ProjectJaina_GMGenie"
+local VERSION    = "3.3.0-Sovereign"
+local TEXTURE_DIR = "Interface\\AddOns\\" .. ADDON_NAME .. "\\Textures\\"
 
 
 
@@ -255,23 +253,12 @@ end
 
 
 local function DoTeleport(dest)
-
     if not dest or dest == "" then return end
-
     local inGroup = (GetNumRaidMembers() > 0 or GetNumPartyMembers() > 0)
-
+    RunCmd(".tele " .. dest)
     if JainaGM_DB.teleWithGroup and inGroup then
-
-        RunCmd(".tele group " .. dest)
-
         RunCmd(".groupsummon")
-
-    else
-
-        RunCmd(".tele " .. dest)
-
     end
-
 end
 
 
@@ -2834,12 +2821,6 @@ immortalWorker:SetScript("OnUpdate", function(self, elapsed)
 
             RunCmd(".revive")
 
-            if GetNumRaidMembers() > 0 or GetNumPartyMembers() > 0 then
-
-                RunCmd(".group revive")
-
-            end
-
         end
 
     end
@@ -2893,52 +2874,44 @@ immortalWorker:SetScript("OnUpdate", function(self, elapsed)
 
 
     if hasDead then
-
-        if not lastReviveTimes["group"] or (now - lastReviveTimes["group"]) > 2.0 then
-
-            lastReviveTimes["group"] = now
-
-            RunCmd(".group revive")
-
+        if rCount > 0 then
+            for i = 1, rCount do
+                local u = "raid" .. i
+                if UnitIsDeadOrGhost(u) then
+                    local name = UnitName(u)
+                    if name and (not lastReviveTimes[name] or (now - lastReviveTimes[name]) > 2.5) then
+                        lastReviveTimes[name] = now
+                        RunCmd(".revive " .. name)
+                    end
+                end
+            end
+        else
+            local pCount = GetNumPartyMembers()
+            for i = 1, pCount do
+                local u = "party" .. i
+                if UnitIsDeadOrGhost(u) then
+                    local name = UnitName(u)
+                    if name and (not lastReviveTimes[name] or (now - lastReviveTimes[name]) > 2.5) then
+                        lastReviveTimes[name] = now
+                        RunCmd(".revive " .. name)
+                    end
+                end
+            end
         end
-
     end
-
 end)
-
-
 
 CreateSectionHeader(tab3, "Ability_Creature_Cursed_03", "CONTROL DE COMBATE & WIPE", -214)
 
-
-
-MakeButton(tab3, "Reset Boss / Wipe", 118, 24, 6, -232, function()
-
-    RunCmd(".die")
-
-    RunCmd(".group revive")
-
-    RunCmd(".revive")
-
-    RunCmd(".cooldown")
-
-    Msg("¡Boss reseteado, banda revivida y CDs listos!")
-
-end, "Mata al objetivo actual (.die), revive a todos (.group revive) y resetea CDs (.cooldown)")
-
-
+MakeButton(tab3, "Rebobinar Wipe", 118, 24, 6, -232, function()
+    RunCmd(".resetpull")
+    Msg("¡Rebobinado de Raid ejecutado (.resetpull)! Banda resucitada, CDs listos y encuentro reiniciado.")
+end, "Rebobina el wipe en 3s (.resetpull): revive banda al 100%, restaura maná/recursos, limpia debuffs y CDs")
 
 MakeButton(tab3, "Revivir Banda", 118, 24, 126, -232, function()
-
-    RunCmd(".group revive")
-
-    RunCmd(".revive")
-
-    RunCmd(".cooldown")
-
-    Msg("¡Banda revivida (.group revive) y facultades listas!")
-
-end, "Revive a todos los miembros de la banda y retira tiempos de reutilización (.group revive)")
+    RunCmd(".resetpull")
+    Msg("¡Banda revivida y restaurada al 100% mediante .resetpull!")
+end, "Revive y restaura a todos los integrantes (.resetpull)")
 
 
 
@@ -2997,23 +2970,24 @@ end, "Repara todo el equipamiento (.repairitems)")
 
 
 -- ================================================================
-
--- PESTAÑA 4: GESTIÓN DE BOTS (30 BOTS POR ROL)
-
+-- PESTAÑA 4: GESTIÓN DE BOTS (HEROBOTS & WANIBOTS POR ROL)
 -- ================================================================
-
-CreateSectionHeader(tab4, "Achievement_Reputation_01", "GESTIÓN DE WANIBOTS (30 ROLES)", 0)
-
-
+CreateSectionHeader(tab4, "Achievement_Reputation_01", "GESTIÓN DE BOTS (HEROBOTS & 30 ROLES)", 0)
 
 local WANIBOTS_ROSTER = {
-
     {
-
+        title = "HEROBOTS DE LA TRINIDAD (4)",
+        icon = "Spell_Holy_BlessingOfStrength",
+        bots = {
+            { name = "Jaina", class = "MAGE", className = "Mago Arcano", roleName = "HeroBot", color = "69ccf0" },
+            { name = "Varian", class = "WARRIOR", className = "Guerrero Protección", roleName = "HeroBot", color = "c79c6e" },
+            { name = "Thrall", class = "SHAMAN", className = "Chamán Restauración", roleName = "HeroBot", color = "0070de" },
+            { name = "Sylvanas", class = "HUNTER", className = "Forestal Oscura", roleName = "HeroBot", color = "abd473" },
+        }
+    },
+    {
         title = "TANQUES (4)",
-
         icon = "Ability_Defend",
-
         bots = {
 
             { name = "Zapalatan", class = "PALADIN", className = "Paladín", roleName = "Tanque", color = "f58cba" },
@@ -3321,11 +3295,10 @@ MakeButton(tab4, "- Despedir", 76, 22, 166, -18, function()
         table.insert(batch, name)
 
         if #batch == 10 or i == #botsToDismiss then
-
-            RunCmd(".playerbots bot remove " .. table.concat(batch, ","))
-
+            local botList = table.concat(batch, ",")
+            RunCmd(".bot remove " .. botList)
+            RunCmd(".playerbots bot remove " .. botList)
             batch = {}
-
         end
 
     end
@@ -3445,29 +3418,19 @@ for _, group in ipairs(WANIBOTS_ROSTER) do
             pendingBots[bot.name] = isChecked
 
             if isChecked then
-
                 RunCmd("/script ConvertToRaid()")
-
+                RunCmd(".bot add " .. bot.name)
                 RunCmd(".playerbots bot add " .. bot.name)
-
                 RunCmd("/invite " .. bot.name)
-
                 RunCmd(".summon " .. bot.name)
-
                 RunCmd("/w " .. bot.name .. " follow")
-
                 Msg("Invocando bot: |cff" .. bot.color .. bot.name .. "|r")
-
             else
-
+                RunCmd(".bot remove " .. bot.name)
                 RunCmd(".playerbots bot remove " .. bot.name)
-
                 RunCmd(".kick " .. bot.name)
-
                 UninviteUnit(bot.name)
-
                 Msg("Deslogueando bot: |cff" .. bot.color .. bot.name .. "|r")
-
             end
 
         end)
@@ -3645,58 +3608,32 @@ CreateSectionHeader(tab5, "Achievement_Zone_HillsbradFoothills", "BALUARTES Y GA
 
 
 local outposts = {
-
-    { name = "Baluarte 1 (Tarren)",   cmd = "outpost 1", tip = "Baluarte Molino Tarren" },
-
-    { name = "Baluarte 2 (Costasur)", cmd = "outpost 2", tip = "Baluarte Costasur" },
-
-    { name = "Baluarte 3 (Cruce)",    cmd = "outpost 3", tip = "Baluarte El Cruce" },
-
-    { name = "Baluarte 4 (Refugio)",  cmd = "outpost 4", tip = "Baluarte Refugio de la Algazara" },
-
-    { name = "Baluarte 5 (Botín)",    cmd = "outpost 5", tip = "Baluarte Bahía del Botín" },
-
-    { name = "Baluarte 6 (Sagrario)", cmd = "outpost 6", tip = "Baluarte Sagrario del Sol" },
-
+    { name = "Baluarte 1 (Tarren)",   cmd = "outpost tele 1", tip = "Baluarte Molino Tarren (.outpost tele 1)" },
+    { name = "Baluarte 2 (Costasur)", cmd = "outpost tele 2", tip = "Baluarte Costasur (.outpost tele 2)" },
+    { name = "Baluarte 3 (Cruce)",    cmd = "outpost tele 3", tip = "Baluarte El Cruce (.outpost tele 3)" },
+    { name = "Baluarte 4 (Refugio)",  cmd = "outpost tele 4", tip = "Baluarte Refugio de la Algazara (.outpost tele 4)" },
+    { name = "Baluarte 5 (Botín)",    cmd = "outpost tele 5", tip = "Baluarte Bahía del Botín (.outpost tele 5)" },
+    { name = "Baluarte 6 (Sagrario)", cmd = "outpost tele 6", tip = "Baluarte Sagrario del Sol (.outpost tele 6)" },
 }
 
-
-
 local outY = -18
-
 for i, op in ipairs(outposts) do
-
     local col = (i - 1) % 2
-
     local row = math.floor((i - 1) / 2)
-
     local posX = 6 + (col * 120)
-
     local posY = outY - (row * 22)
-
     MakeButton(tab5, op.name, 118, 20, posX, posY, function()
-
         RunCmd("." .. op.cmd)
-
-    end, "Teletransporte a " .. op.tip .. " (." .. op.cmd .. ")")
-
+    end, "Teletransporte a " .. op.tip)
 end
 
-
-
-MakeButton(tab5, "Galeón Desertores", 118, 20, 6, -84, function()
-
-    DoTeleport("galeon")
-
-end, "Teletransporte a la cubierta del Galeón de los Desertores (.tele galeon)")
-
-
+MakeButton(tab5, "Galeón Cubierta", 118, 20, 6, -84, function()
+    RunCmd(".galleon tele")
+end, "Teletransporte seguro a la cubierta principal del Galeón (.galleon tele)")
 
 MakeButton(tab5, "Galeón Escala", 118, 20, 126, -84, function()
-
-    DoTeleport("galeon_escala")
-
-end, "Teletransporte a la escala de embarque del Galeón (.tele galeon_escala)")
+    RunCmd(".galleon ladder")
+end, "Teletransporte a la escala de abordaje acuática (.galleon ladder)")
 
 
 CreateSectionHeader(tab5, "Spell_Arcane_PortalDalaran", "SERVIDOR Y SCRIPTING LUA", -108)
@@ -3788,6 +3725,9 @@ freeE:SetFontObject("GameFontHighlightSmall")
 local function ExecFreeCmd()
     local cmd = strtrim(freeE:GetText() or "")
     if cmd ~= "" then
+        if cmd:sub(1, 1) ~= "." and cmd:sub(1, 1) ~= "#" and cmd:sub(1, 1) ~= "/" then
+            cmd = "." .. cmd
+        end
         RunCmd(cmd)
         Msg("Ejecutado: " .. cmd)
         freeE:SetText("")

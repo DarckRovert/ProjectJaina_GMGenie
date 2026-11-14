@@ -88,6 +88,35 @@ function GMGenie.onLoad()
     GMGenie.showGMMessage("GMGenie 1.0.0 by Chocochaos ((c) 2011-2014) modified for JainaCore. Latest version adopted to JainaCore can be found here: https://github.com/jainacore/GMGenie/tags");
 end
 
+function GMGenie.toggleMain(msg)
+    local cmd = string.lower(strtrim(msg or ""))
+    if cmd == "hud" then
+        GMGenie.Hud.toggle()
+    elseif cmd == "tickets" or cmd == "ticket" then
+        if GMGenie.Tickets and GMGenie.Tickets.toggle then
+            GMGenie.Tickets.toggle()
+        end
+    elseif cmd == "spawns" or cmd == "builder" then
+        if GMGenie.Spawns and GMGenie.Spawns.toggle then
+            GMGenie.Spawns.toggle()
+        end
+    elseif cmd == "spy" then
+        if GMGenie.Spy and GMGenie.Spy.spy then
+            GMGenie.Spy.spy()
+        end
+    else
+        if GMGenie.ControlPanel and GMGenie.ControlPanel.Toggle then
+            GMGenie.ControlPanel.Toggle()
+        else
+            GMGenie.Hud.toggle()
+        end
+    end
+end
+
+SLASH_GMGENIE1 = "/gmgenie"
+SLASH_GMGENIE2 = "/gmg"
+SlashCmdList["GMGENIE"] = GMGenie.toggleMain
+
 local frame = CreateFrame("FRAME");
 frame:RegisterEvent("ADDON_LOADED");
 

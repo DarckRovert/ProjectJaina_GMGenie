@@ -454,7 +454,7 @@ end
 function GMGenie.Tickets.delete()
     if not GMGenie.Tickets.currentTicket or not GMGenie.Tickets.currentTicket["ticketId"] then return end
     GMGenie.sendCommand(".ticket close " .. GMGenie.Tickets.currentTicket["ticketId"]);
-    GMGenie.sendCommand(".ticket del " .. GMGenie.Tickets.currentTicket["ticketId"]);
+    GMGenie.sendCommand(".ticket delete " .. GMGenie.Tickets.currentTicket["ticketId"]);
     GMGenie.Tickets.done = GMGenie.Tickets.done + 1;
     GMGenie_SavedVars.ticketsDone = GMGenie.Tickets.done;
     local offlineCount = GMGenie.Tickets.tickets - GMGenie.Tickets.onlineTickets;

@@ -353,11 +353,11 @@ function GMGenie.Spawns.resetCoords()
 end
 
 StaticPopupDialogs["GMGENIE_CONFIRM_DELETE_NPC"] = {
-    text = "|cffff4444[GMGenie ADVERTENCIA]|r\n¿Estás seguro de que deseas ELIMINAR el NPC objetivo (.npc del)?\n|cffff8800Esta acción es permanente en el mundo.|r",
+    text = "|cffff4444[GMGenie ADVERTENCIA]|r\n¿Estás seguro de que deseas ELIMINAR el NPC objetivo (.npc delete)?\n|cffff8800Esta acción es permanente en el mundo.|r",
     button1 = "Eliminar",
     button2 = "Cancelar",
     OnAccept = function()
-        GMGenie.sendCommand(".npc del")
+        GMGenie.sendCommand(".npc delete")
         GMGenie.showGMMessage("|cffff4444[GMGenie]|r NPC eliminado.")
     end,
     timeout = 0,
@@ -373,7 +373,7 @@ StaticPopupDialogs["GMGENIE_CONFIRM_DELETE_OBJECT"] = {
     OnAccept = function(self, data)
         if data and data.guid then
             GMGenie.Spawns.waitingForObjectDelete = true
-            GMGenie.sendCommand(".gobject del " .. data.guid)
+            GMGenie.sendCommand(".gobject delete " .. data.guid)
             GMGenie.showGMMessage("|cffff4444[GMGenie]|r Eliminando objeto: " .. tostring(data.name) .. " GUID: " .. tostring(data.guid) .. " ID: " .. tostring(data.id))
         end
     end,
@@ -390,7 +390,7 @@ StaticPopupDialogs["GMGENIE_CONFIRM_REMOVE_LINK"] = {
     OnAccept = function(self, data)
         if data then
             if data.type == "gameobject" then
-                GMGenie.sendCommand(".gob delete " .. data.id)
+                GMGenie.sendCommand(".gobject delete " .. data.id)
                 GMGenie.showGMMessage("|cffff4444[GMGenie]|r Objeto " .. data.id .. " eliminado.")
             elseif data.type == "creature" then
                 GMGenie.sendCommand(".npc delete " .. data.id)
@@ -597,7 +597,7 @@ end
 
 function GMGenie.Spawns.Hyperlink.spawnHere()
     if GMGenie.Spawns.Hyperlink.type == "gameobject_entry" then
-        GMGenie.sendCommand(".gob add " .. GMGenie.Spawns.Hyperlink.id);
+        GMGenie.sendCommand(".gobject add " .. GMGenie.Spawns.Hyperlink.id);
     elseif GMGenie.Spawns.Hyperlink.type == "creature_entry" then
         GMGenie.sendCommand(".npc add " .. GMGenie.Spawns.Hyperlink.id);
     else
@@ -616,10 +616,10 @@ function GMGenie.Spawns.Hyperlink.addPreset()
 end
 
 function GMGenie.Spawns.Hyperlink.list()
-    if GMGenie.Spawns.Hyperlink.type == "gameobject_entry" then
-        GMGenie.sendCommand(".list object " .. GMGenie.Spawns.Hyperlink.id);
-    elseif GMGenie.Spawns.Hyperlink.type == "creature_entry" then
-        GMGenie.sendCommand(".list creature " .. GMGenie.Spawns.Hyperlink.id);
+    if GMGenie.Spawns.Hyperlink.type == "gameobject_entry" or GMGenie.Spawns.Hyperlink.type == "gameobject" then
+        GMGenie.sendCommand(".lookup object " .. GMGenie.Spawns.Hyperlink.id);
+    elseif GMGenie.Spawns.Hyperlink.type == "creature_entry" or GMGenie.Spawns.Hyperlink.type == "creature" then
+        GMGenie.sendCommand(".lookup creature " .. GMGenie.Spawns.Hyperlink.id);
     else
         GMGenie.showGMMessage("Could not list link type " .. GMGenie.Spawns.Hyperlink.type);
     end
@@ -627,7 +627,7 @@ end
 
 function GMGenie.Spawns.Hyperlink.goTo()
     if GMGenie.Spawns.Hyperlink.type == "gameobject" then
-        GMGenie.sendCommand(".go object " .. GMGenie.Spawns.Hyperlink.id);
+        GMGenie.sendCommand(".go gameobject " .. GMGenie.Spawns.Hyperlink.id);
     elseif GMGenie.Spawns.Hyperlink.type == "creature" then
         GMGenie.sendCommand(".go creature " .. GMGenie.Spawns.Hyperlink.id);
     else

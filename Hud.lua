@@ -110,18 +110,19 @@ function GMGenie.Hud.flyStatus(status)
 end
 
 function GMGenie.Hud.readNotice(_, event, notice)
-    if event == "UI_ERROR_MESSAGE" then
-        if notice == "GM mode is ON" then
+    if event == "UI_ERROR_MESSAGE" and notice then
+        local low = string.lower(notice)
+        if notice == "GM mode is ON" or low:find("modo mj activado") or low:find("gm mode is on") then
             GMGenie.Hud.gmStatus(true);
-        elseif notice == "GM mode is OFF" then
+        elseif notice == "GM mode is OFF" or low:find("modo mj desactivado") or low:find("gm mode is off") then
             GMGenie.Hud.gmStatus(false);
-        elseif notice == "GM Chat Badge is ON" then
+        elseif notice == "GM Chat Badge is ON" or low:find("chat badge is on") or low:find("distintivo.*activado") then
             GMGenie.Hud.chatStatus(true);
-        elseif notice == "GM Chat Badge is OFF" then
+        elseif notice == "GM Chat Badge is OFF" or low:find("chat badge is off") or low:find("distintivo.*desactivado") then
             GMGenie.Hud.chatStatus(false);
-        elseif notice == "You are now visible." then
+        elseif notice == "You are now visible." or low:find("ahora eres visible") or low:find("you are.*visible") then
             GMGenie.Hud.visibilityStatus(true);
-        elseif notice == "You are now invisible." then
+        elseif notice == "You are now invisible." or low:find("ahora eres invisible") or low:find("you are.*invisible") then
             GMGenie.Hud.visibilityStatus(false);
             GMGenie.Hud.toggleWhisper(GMGenie.Hud.whisper);
         end
@@ -178,7 +179,7 @@ function GMGenie.Hud.setSpeed()
     if UnitName("target") == UnitName("player") or UnitName("target") == nil then
         local speed = GMGenie_Hud_Speed:GetText();
         GMGenie_Hud_Speed:ClearFocus();
-        GMGenie.sendCommand(".mod speed all " .. speed);
+        GMGenie.sendCommand(".modify speed " .. speed);
     else
         GMGenie.showGMMessage("Be sure to target yourself before setting the speed.");
     end

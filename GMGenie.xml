@@ -430,8 +430,23 @@
                 self:UnlockHighlight()
                 GMGenie_Minimap_DraggingFrame:Hide();
             </OnDragStop>
+            <OnEnter>
+                GameTooltip:SetOwner(self, "ANCHOR_LEFT");
+                GameTooltip:SetText("|cFFD4AF37Project Jaina|r - |cFF00CCFFGMGenie Staff Suite|r");
+                GameTooltip:AddLine("|cffffffffClic Izquierdo:|r Alternar Panel de Control GM (JainaGM)", 1, 1, 1);
+                GameTooltip:AddLine("|cffffffffClic Derecho:|r Alternar HUD Overlay", 1, 1, 1);
+                GameTooltip:AddLine("|cff888888Arrastrar para mover por el minimapa|r", 0.7, 0.7, 0.7);
+                GameTooltip:Show();
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide();
+            </OnLeave>
             <OnClick>
-                GMGenie.Hud.toggle();
+                if button == "RightButton" then
+                    GMGenie.Hud.toggle();
+                else
+                    GMGenie.toggleMain();
+                end
             </OnClick>
         </Scripts>
         <NormalTexture file="Interface\AddOns\ProjectJaina_GMGenie\Textures\Genie.tga"/>

@@ -339,17 +339,18 @@ function ChatFrame_MessageEventHandler(self, event, ...)
         end
 
         local charName = UnitName("player");
-        if string.match(arg1, "%|cffffffff%|Hplayer:" .. charName .. "%|h%[" .. charName .. "%]%|h%|r%'s Fly Mode on") then
+        local low1 = string.lower(arg1 or "");
+        if (charName and string.find(arg1, charName) and (low1:find("fly mode on") or low1:find("modo.*vuelo.*activado") or low1:find("vuelo.*activado"))) or low1:find("fly mode on") then
             GMGenie.Hud.flyStatus(true);
-        elseif string.match(arg1, "%|cffffffff%|Hplayer:" .. charName .. "%|h%[" .. charName .. "%]%|h%|r%'s Fly Mode off") then
+        elseif (charName and string.find(arg1, charName) and (low1:find("fly mode off") or low1:find("modo.*vuelo.*desactivado") or low1:find("vuelo.*desactivado"))) or low1:find("fly mode off") then
             GMGenie.Hud.flyStatus(false);
-        elseif arg1 == "Accepting Whisper: ON" or arg1 == "Accepting Whisper: on" then
+        elseif low1:find("accepting whisper: on") or low1:find("susurros.*on") or low1:find("aceptando susurros") then
             GMGenie.Hud.whisperStatus(true);
-        elseif arg1 == "Accepting Whisper: OFF" or arg1 == "Accepting Whisper: off" then
+        elseif low1:find("accepting whisper: off") or low1:find("susurros.*off") or low1:find("rechazando susurros") then
             GMGenie.Hud.whisperStatus(false);
-        elseif arg1 == "You are: visible" then
+        elseif low1:find("you are: visible") or low1:find("you are now visible") or low1:find("ahora eres visible") or low1:find("eres visible") then
             GMGenie.Hud.visibilityStatus(true);
-        elseif arg1 == "You are: invisible" then
+        elseif low1:find("you are: invisible") or low1:find("you are now invisible") or low1:find("ahora eres invisible") or low1:find("eres invisible") then
             GMGenie.Hud.visibilityStatus(false);
         end
 
