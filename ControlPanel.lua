@@ -3608,12 +3608,12 @@ CreateSectionHeader(tab5, "Achievement_Zone_HillsbradFoothills", "BALUARTES Y GA
 
 
 local outposts = {
-    { name = "Baluarte 1 (Tarren)",   cmd = "outpost tele 1", tip = "Baluarte Molino Tarren (.outpost tele 1)" },
-    { name = "Baluarte 2 (Costasur)", cmd = "outpost tele 2", tip = "Baluarte Costasur (.outpost tele 2)" },
-    { name = "Baluarte 3 (Cruce)",    cmd = "outpost tele 3", tip = "Baluarte El Cruce (.outpost tele 3)" },
-    { name = "Baluarte 4 (Refugio)",  cmd = "outpost tele 4", tip = "Baluarte Refugio de la Algazara (.outpost tele 4)" },
-    { name = "Baluarte 5 (Botín)",    cmd = "outpost tele 5", tip = "Baluarte Bahía del Botín (.outpost tele 5)" },
-    { name = "Baluarte 6 (Sagrario)", cmd = "outpost tele 6", tip = "Baluarte Sagrario del Sol (.outpost tele 6)" },
+    { name = "Baluarte 1 (Theramore)", cmd = "outpost tele 1", tip = "Baluarte del Bastión de Theramore (.outpost tele 1)" },
+    { name = "Baluarte 2 (Azshara)",   cmd = "outpost tele 2", tip = "Refugio Costero de Azshara (.outpost tele 2)" },
+    { name = "Baluarte 3 (Poniente)",  cmd = "outpost tele 3", tip = "Faro de Páramos de Poniente (.outpost tele 3)" },
+    { name = "Baluarte 4 (Trabalomas)", cmd = "outpost tele 4", tip = "Cabaña Solitaria de Trabalomas (.outpost tele 4)" },
+    { name = "Baluarte 5 (Faldir)",    cmd = "outpost tele 5", tip = "Torreón de la Caleta de Faldir (.outpost tele 5)" },
+    { name = "Baluarte 6 (Feralas)",   cmd = "outpost tele 6", tip = "Refugio Costero de Feralas (.outpost tele 6)" },
 }
 
 local outY = -18
