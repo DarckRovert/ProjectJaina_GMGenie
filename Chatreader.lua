@@ -9,23 +9,15 @@ TicketTab = "General";
 
 -- 1d2h3m4s to number in seconds
 function GMGenie.timeStrToSeconds(timeStr)
-    local days = string.match(timeStr, "([0-9]*)d");
-    if not days then
-        days = 0;
+    if not timeStr or type(timeStr) ~= "string" then
+        return 0
     end
-    local hours = string.match(timeStr, "([0-9]*)h");
-    if not hours then
-        hours = 0;
-    end
-    local minutes = string.match(timeStr, "([0-9]*)m");
-    if not minutes then
-        minutes = 0;
-    end
-    local seconds = string.match(timeStr, "([0-9]*)s");
-    if not seconds then
-        seconds = 0;
-    end
-    return (((((tonumber(days) * 24) + tonumber(hours)) * 60) + tonumber(minutes)) * 60) + tonumber(seconds);
+    local days = tonumber(string.match(timeStr, "(%d+)%s*d")) or 0
+    local hours = tonumber(string.match(timeStr, "(%d+)%s*h")) or 0
+    local minutes = tonumber(string.match(timeStr, "(%d+)%s*m")) or 0
+    local seconds = tonumber(string.match(timeStr, "(%d+)%s*s")) or 0
+
+    return (((((days * 24) + hours) * 60) + minutes) * 60) + seconds
 end
 
 -- Read from chat
