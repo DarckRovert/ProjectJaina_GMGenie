@@ -21,7 +21,7 @@
 
 
 local ADDON_NAME = ... or "ProjectJaina_GMGenie"
-local VERSION    = "3.3.0-Sovereign"
+local VERSION    = "3.3.1-Sovereign"
 local TEXTURE_DIR = "Interface\\AddOns\\" .. ADDON_NAME .. "\\Textures\\"
 
 
