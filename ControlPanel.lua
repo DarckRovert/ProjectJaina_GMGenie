@@ -2553,9 +2553,11 @@ MakeButton(tab2, "Nivel 80", 118, 22, 6, -356, function()
 
     ShowConfirm("Subir al Nivel 80", "¿Estás seguro de subir inmediatamente al nivel 80 de WotLK?", function()
 
-        RunCmd(".character level 80")
+        local tName = (UnitExists("target") and UnitIsPlayer("target") and UnitName("target")) or UnitName("player")
 
-        Msg("Personaje subido a nivel 80.")
+        RunCmd(".character level " .. tName .. " 80")
+
+        Msg("Personaje " .. tName .. " subido a nivel 80.")
 
     end)
 
@@ -3659,8 +3661,9 @@ MakeButton(tab5, "Recargar Config", 118, 20, 126, -148, function()
 end, "Recarga la configuración de worldserver.conf (.reload config)")
 
 MakeButton(tab5, "Tickets GM", 118, 20, 6, -170, function()
-    if GMGenie and GMGenie.Tickets and GMGenie.Tickets.Toggle then
-        GMGenie.Tickets.Toggle()
+    local toggleFn = GMGenie and GMGenie.Tickets and (GMGenie.Tickets.Toggle or GMGenie.Tickets.toggle)
+    if toggleFn then
+        toggleFn()
     else
         RunCmd(".ticket on")
     end
@@ -3804,7 +3807,7 @@ f:RegisterEvent("VARIABLES_LOADED")
 
 f:RegisterEvent("PLAYER_LOGIN")
 
-f:RegisterEvent("GET_ITEM_INFO_RECEIVED")
+pcall(f.RegisterEvent, f, "GET_ITEM_INFO_RECEIVED")
 
 f:RegisterEvent("GUILD_ROSTER_UPDATE")
 

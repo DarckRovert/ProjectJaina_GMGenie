@@ -4,6 +4,19 @@ Todos los cambios notables de este proyecto están documentados en este archivo 
 
 ---
 
+## [3.3.1-Sovereign] — 2026-11-22
+### Corrección de StaticPopup, Minimapa trigonométrico y Comandos 3.3.5a (Hito #386)
+- **Confirmación de Borrado de Objetos (`Spawns.lua`):**
+  - Corregido desajuste de 3 placeholders `%s` en `StaticPopupDialogs["GMGENIE_CONFIRM_DELETE_OBJECT"]`, consolidando el texto a 2 argumentos con `"GUID: %s, ID: %s"` en `text_arg2`.
+- **Posición Orbital del Minimapa (`GMGenie.lua`):**
+  - Corregido error de grados vs radianes en `GMGenie.minimap.reposition()` aplicando `math.rad(GMGenie_SavedVars.minimapPos or 45)`.
+- **Panel de Control & Tickets (`Tickets.lua`, `ControlPanel.lua`):**
+  - Añadido alias `GMGenie.Tickets.Toggle = GMGenie.Tickets.toggle` con respaldo defensivo en `ControlPanel.lua`.
+  - Corregido botón `"Nivel 80"` para resolver el nombre del objetivo o del propio GM y emitir sintaxis válida de JainaCore (`".character level " .. tName .. " 80"`).
+  - Protegido `f:RegisterEvent("GET_ITEM_INFO_RECEIVED")` con `pcall` para compatibilidad estricta con WoW 3.3.5a.
+
+---
+
 ## [3.3.0-Sovereign] — 2026-11-14
 ### Reingeniería de Comandos AzerothCore, Resiliencia Dual-Locale esES/enUS y Hitos #356-360
 - **Comandos de Barra y Minimapa:**

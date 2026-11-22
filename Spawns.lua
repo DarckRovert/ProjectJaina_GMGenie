@@ -367,7 +367,7 @@ StaticPopupDialogs["GMGENIE_CONFIRM_DELETE_NPC"] = {
 }
 
 StaticPopupDialogs["GMGENIE_CONFIRM_DELETE_OBJECT"] = {
-    text = "|cffff4444[GMGenie ADVERTENCIA]|r\n¿Eliminar GameObject %s (GUID: %s, ID: %s)?\n|cffff8800Esta acción es permanente en el mundo.|r",
+    text = "|cffff4444[GMGenie ADVERTENCIA]|r\n¿Eliminar GameObject %s (%s)?\n|cffff8800Esta acción es permanente en el mundo.|r",
     button1 = "Eliminar",
     button2 = "Cancelar",
     OnAccept = function(self, data)
@@ -410,7 +410,8 @@ function GMGenie.Spawns.targetObject()
 end
 
 function GMGenie.Spawns.deleteObject(name, guid, id)
-    local dialog = StaticPopup_Show("GMGENIE_CONFIRM_DELETE_OBJECT", name or "Objeto", guid or "?")
+    local detailText = string.format("GUID: %s, ID: %s", tostring(guid or "?"), tostring(id or "?"))
+    local dialog = StaticPopup_Show("GMGENIE_CONFIRM_DELETE_OBJECT", name or "Objeto", detailText)
     if dialog then
         dialog.data = { name = name, guid = guid, id = id }
     end

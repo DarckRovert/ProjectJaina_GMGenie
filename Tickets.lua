@@ -302,6 +302,7 @@ function GMGenie.Tickets.toggle(showOffline)
         GMGenie_Tickets_Main:Show();
     end
 end
+GMGenie.Tickets.Toggle = GMGenie.Tickets.toggle;
 
 -- load ticket
 function GMGenie.Tickets.loadTicket(ticketId, num)
